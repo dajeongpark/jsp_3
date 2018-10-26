@@ -3,17 +3,18 @@ package com.dajeong.page;
 public class Pager {
 	
 	//페이징 처리 
-	private int totlaBlock;
+	private int totalPage;
+	private int totalBlock;
 	private int curBlock;
 	private int startNum;
 	private int lastNum;
 	private Search search;
 	
 	public int getTotlaBlock() {
-		return totlaBlock;
+		return totalBlock;
 	}
 	public void setTotlaBlock(int totlaBlock) {
-		this.totlaBlock = totlaBlock;
+		this.totalBlock = totlaBlock;
 	}
 	public int getCurBlock() {
 		return curBlock;
@@ -38,6 +39,12 @@ public class Pager {
 	}
 	public void setSearch(Search search) {
 		this.search = search;
+	}
+	public int getTotalPage() {
+		return totalPage;
+	}
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
 	}
 	
 }
