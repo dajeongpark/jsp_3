@@ -7,16 +7,35 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dajeong.action.ActionForward;
 import com.dajeong.board.BoardDTO;
+import com.dajeong.board.BoardService;
 import com.dajeong.page.MakePager;
 import com.dajeong.page.Pager;
 import com.dajeong.page.RowNumber;
 
-public class QnaService {
+public class QnaService implements BoardService {
 	
 	private QnaDAO qnaDAO;
 	
 	public QnaService() {
 		qnaDAO = new QnaDAO();
+	}
+	
+	@Override
+	public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	//select
@@ -31,8 +50,8 @@ public class QnaService {
 			boardDTO = qnaDAO.selectOne(num);
 			
 			request.setAttribute("dto", boardDTO);
-			
-			actionForward.setPath("../WEB-INF/qna/qnaSelectOne.jsp");
+			request.setAttribute("board", "qna");
+			actionForward.setPath("../WEB-INF/view/board/boardSelectOne.jsp");
 			actionForward.setCheck(true);
 
 		}catch (Exception e) {
@@ -53,7 +72,6 @@ public class QnaService {
 		int curPage = 1;
 		try {
 			curPage = Integer.getInteger(request.getParameter("curPage"));
-			
 		}catch (Exception e) {
 
 		}		
@@ -61,19 +79,17 @@ public class QnaService {
 		String kind = request.getParameter("kind");
 		String search = request.getParameter("search");
 		
-		MakePager mk = new MakePager(curPage, search, kind);
-		
+		MakePager mk = new MakePager(curPage, search, kind);		
 		RowNumber rowNumber = mk.makeRow();
 		List<BoardDTO> ar;
 		try {
 			ar = qnaDAO.selectList(rowNumber);
 			int totalCount = qnaDAO.getCount(rowNumber.getSearch());
-			Pager pager = mk.makePager(totalCount);
-			
+			Pager pager = mk.makePager(totalCount);		
 			request.setAttribute("list", ar);
 			request.setAttribute("pager", pager);
-			
-			actionForward.setPath("../WEB-INF/qna/qnaList.jsp");
+			request.setAttribute("board", "qna");
+			actionForward.setPath("../WEB-INF/view/board/boardList.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

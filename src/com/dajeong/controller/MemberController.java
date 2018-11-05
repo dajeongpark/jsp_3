@@ -10,43 +10,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dajeong.action.ActionForward;
-import com.dajeong.notice.NoticeService;
+import com.dajeong.member.MemberService;
 
 /**
- * Servlet implementation class NoticeController
+ * Servlet implementation class MemberController
  */
-@WebServlet("/NoticeController")
-public class NoticeController extends HttpServlet {
+@WebServlet("/MemberController")
+public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private MemberService memberService;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeController() {
+    public MemberController() {
         super();
-        // TODO Auto-generated constructor stub
+        memberService = new MemberService();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String phone = request.getServletContext().getInitParameter("phone");
-		System.out.println(phone);
+				
 		String command = request.getPathInfo();
 		ActionForward actionForward = null;
-		NoticeService noticeService = new NoticeService();
 		
-		if(command.equals("/noticeList.do")) {
-			actionForward = noticeService.selectList(request, response);
-		}else if(command.equals("/noticeSelectOne.do")) {
-			actionForward = noticeService.selectOne(request, response);
-		}else if(command.equals("/noticeWrite.do")) {
-			actionForward = noticeService.insert(request, response);
-		}else if(command.equals("/noticeUpdate.do")) {
-			actionForward = noticeService.update(request, response);
-		}else if(command.equals("/noticeDelete.do")) {
-			actionForward = noticeService.delete(request, response);
+		if(command.equals("/memberJoin.do")) {
+			actionForward = memberService.join(request, response);
+		}else if(command.equals("/memberLogin.do")) {
+			actionForward = memberService.login(request, response);
+		}else if(command.equals("/memberLogout.do")) {
+			actionForward = memberService.logout(request, response);
+		}else if(command.equals("/memberMypage.do")){
+			actionForward = memberService.myPage(request, response);
+		}else if(command.equals("/memberDelete.do")) {
+			actionForward = memberService.delete(request, response);
+		}else if(command.equals("/memberUpdate.do")) {
+			actionForward = memberService.update(request, response);
+		}else if(command.equals("/memberCheckId.do")) {
+			actionForward = memberService.checkid(request, response);
+		}else{
+			actionForward = new ActionForward();
+			actionForward.setCheck(true);
+			actionForward.setPath("../WEB-INF/view/member/memberList.jsp");
 		}
 		
 		if(actionForward.isCheck()) {

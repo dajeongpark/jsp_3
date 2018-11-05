@@ -10,10 +10,10 @@ public class Pager {
 	private int lastNum;
 	private Search search;
 	
-	public int getTotlaBlock() {
+	public int getTotalBlock() {
 		return totalBlock;
 	}
-	public void setTotlaBlock(int totlaBlock) {
+	public void setTotalBlock(int totlaBlock) {
 		this.totalBlock = totlaBlock;
 	}
 	public int getCurBlock() {

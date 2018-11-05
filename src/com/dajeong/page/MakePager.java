@@ -54,7 +54,7 @@ public class MakePager {
 		
 		Pager pager = new Pager();
 		pager.setCurBlock(curBlock);
-		pager.setTotlaBlock(totalBlock);
+		pager.setTotalBlock(totalBlock);
 		pager.setStartNum(startNum);
 		pager.setLastNum(lastNum);
 		pager.setSearch(this.search);
