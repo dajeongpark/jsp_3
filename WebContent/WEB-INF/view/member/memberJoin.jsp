@@ -47,6 +47,10 @@
 			      <input type="password" class="form-control" id="pw" placeholder="Enter pw" name="pw">
 			    </div>
 			    <div class="form-group">
+			      <label for="writer">PASSWORD:</label>
+			      <input type="password" class="form-control" id="pw" placeholder="Enter pw" name="pw">
+			    </div>
+			    <div class="form-group">
 			      <label for="title">NAME:</label>
 			      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
 			    </div>
